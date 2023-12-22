@@ -28,6 +28,7 @@ load_dotenv()
 Pos_Path = os.getenv('Pos_Path')
 Aum_Pos_Path = os.getenv('Pos_Path')
 
+
 for file_name in os.listdir(os.path.join(Pos_Path)):
   img_path = os.path.join(Pos_Path, file_name)
   img = cv2.imread(img_path)
@@ -35,12 +36,13 @@ for file_name in os.listdir(os.path.join(Pos_Path)):
     print(f"Error: Unable to read image {img_path}")
     continue  # Skip to the next iteration
   aug_imgs = augm_data(img)
-
+  # Loop through the augmented images
   #   # Generate a unique filename using uuid
   #   # Construct the full path by joining Aum_Pos_Path and the unique filename
   #   # Write the image to the full path
   for image in aug_imgs:
     cv2.imwrite(os.path.join(Aum_Pos_Path, '{}.jpg'.format(str(uuid.uuid1()))), image.numpy())
+
 
 # ⚓ 🖼
 Anc_Path = os.getenv('Anc_Path')
